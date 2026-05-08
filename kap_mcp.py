@@ -158,4 +158,7 @@ async def kap_sirket_listesi(params: SirketAraInput) -> str:
 
 
 if __name__ == "__main__":
-    mcp.run(transport="streamable-http", host="0.0.0.0", port=PORT)
+    import os
+    os.environ.setdefault("FASTMCP_PORT", str(PORT))
+    os.environ.setdefault("FASTMCP_HOST", "0.0.0.0")
+    mcp.run(transport="streamable-http")
