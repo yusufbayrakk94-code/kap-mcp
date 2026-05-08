@@ -13,7 +13,7 @@ PORT      = int(os.environ.get("PORT", 8000))
 
 _token_cache: dict = {"token": None, "expires_at": 0}
 
-mcp = FastMCP("kap_mcp")
+mcp = FastMCP("kap_mcp", host="0.0.0.0", port=PORT)
 
 
 async def _get_token() -> str:
@@ -158,7 +158,4 @@ async def kap_sirket_listesi(params: SirketAraInput) -> str:
 
 
 if __name__ == "__main__":
-    import os
-    os.environ.setdefault("FASTMCP_PORT", str(PORT))
-    os.environ.setdefault("FASTMCP_HOST", "0.0.0.0")
     mcp.run(transport="streamable-http")
